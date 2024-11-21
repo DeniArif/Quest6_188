@@ -40,7 +40,9 @@ fun MahasiswaApp(
                 onSumbitButtonClicked = {
                     mahasiswaViewModel.saveData(it)
                     navConroller.navigate(Halaman.Matakuliah.name)
-
+                },
+                onBackButtonClicked = {
+                    nacController.popBackStack()
                 }
             )
 
