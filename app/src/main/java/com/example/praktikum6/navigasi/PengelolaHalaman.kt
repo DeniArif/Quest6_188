@@ -1,5 +1,6 @@
 package com.example.praktikum6.navigasi
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
@@ -24,7 +25,11 @@ fun MahasiswaApp(
     NavHost(
         navController = navController,
         startDestination = Halaman.Splash.name,
-
-    )
+        modifier = Modifier.padding()
+    ) {
+        composable(route = Halaman.Splash.name) {
+            SplashView(onMulaiButton = )
+        }
+    }
 
 }
