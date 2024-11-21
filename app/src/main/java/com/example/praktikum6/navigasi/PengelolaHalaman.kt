@@ -28,7 +28,9 @@ fun MahasiswaApp(
         modifier = Modifier.padding()
     ) {
         composable(route = Halaman.Splash.name) {
-            SplashView(onMulaiButton = )
+            SplashView(onMulaiButton = {
+                navController.navigate()
+            })
         }
     }
 
