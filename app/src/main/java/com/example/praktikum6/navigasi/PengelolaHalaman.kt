@@ -23,6 +23,7 @@ fun MahasiswaApp(
     val mahassiswaUiState = mahasiswaViewModel.mahasiswaUiState.collectAsState().value
     NavHost(
         navController = navController,
+        startDestination = Halaman.Splash.name,
 
     )
 
