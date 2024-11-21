@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModel
 import com.example.praktikum6.model.Mahasiswa
 import com.example.praktikum6.ui.theme.view.screen.MahasiswaFormView
 import com.example.praktikum6.ui.theme.view.viewmodel.MahasiswaViewModel
@@ -18,9 +19,10 @@ enum class Halaman {
 
 @Composable
 fun MahasiswaApp(
-    modifier = Modifier,
+    modifier: Modifier,
     mahasiswaViewModel: MahasiswaViewModel = viewModel(),
-    navHostController: NavHostController = rememberNavController
+    krsViewModel: RencanaStudyViewModel = viewModel(),
+    navController: NavHostController = rememberNavController()
 ) {
     val mahassiswaUiState = mahasiswaViewModel.mahasiswaUiState.collectAsState().value
     NavHost(
@@ -37,7 +39,7 @@ fun MahasiswaApp(
         }
         composable(route = Halaman.Mahasiswa.name) {
             MahasiswaFormView(
-                onSumbitButtonClicked = {
+                onSubmitButtonClicked = {
                     mahasiswaViewModel.saveData(it)
                     navConroller.navigate(Halaman.Matakuliah.name)
                 },
@@ -45,7 +47,13 @@ fun MahasiswaApp(
                     nacController.popBackStack()
                 }
             )
-
+        }
+        composable(route = Halaman.Matakuliah.name) {
+            RencanaStudyView(
+                mahasiswa = mahasiswaUiState,
+                onSubmitButtonClicked = { krsViewModel.saveDataKRS(it)},
+                onBackButtonClicked = { navController.popBackStack() }
+            )
         }
     }
 
