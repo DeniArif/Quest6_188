@@ -21,5 +21,9 @@ fun MahasiswaApp(
     navHostController: NavHostController = rememberNavController
 ) {
     val mahassiswaUiState = mahasiswaViewModel.mahasiswaUiState.collectAsState().value
+    NavHost(
+        navController = navController,
+
+    )
 
 }
