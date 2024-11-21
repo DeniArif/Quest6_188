@@ -6,6 +6,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import com.example.praktikum6.model.Mahasiswa
+import com.example.praktikum6.ui.theme.view.screen.MahasiswaFormView
 import com.example.praktikum6.ui.theme.view.viewmodel.MahasiswaViewModel
 
 enum class Halaman {
@@ -35,6 +36,11 @@ fun MahasiswaApp(
             })
         }
         composable(route = Halaman.Mahasiswa.name) {
+            MahasiswaFormView(
+                onSumbitButtonClicked = {
+
+                }
+            )
 
         }
     }
