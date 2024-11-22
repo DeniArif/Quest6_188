@@ -1,5 +1,3 @@
-package com.example.praktikum6.ui.theme.view.screen
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -9,11 +7,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Info
@@ -32,147 +27,148 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.praktikum6.R
-import com.example.praktikum6.model.Mahasiswa
-@Preview(showBackground = true)
+
+
+
+
 @Composable
-fun MahasiswaFormView() {
-    var nama by remember { mutableStateOf("") }
-    var nim by remember { mutableStateOf("") }
-    var email by remember { mutableStateOf("") }
+fun MahasiswaFormView(
+    onSimpanButtonClicked: (MutableList<String>) -> Unit,
+    onBackButtonClicked: () -> Unit
+) {
 
-    val  listData: MutableList<String> = mutableListOf(nim, nama, email)
+    var nama by remember { mutableStateOf("") };
+    var nim by remember { mutableStateOf("") };
+    var email by remember { mutableStateOf("") };
 
-
+    var listData: MutableList<String> = mutableListOf(nim, nama, email)
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(color = colorResource(id = R.color.primary))
     ) {
         Row(
-            modifier = Modifier
-                .padding(30.dp),
+            modifier = Modifier.padding(40.dp),
             verticalAlignment = Alignment.CenterVertically,
-        ) {
+
+            ) {
             Image(
                 painter = painterResource(
                     id = R.drawable.umy
                 ),
-                contentDescription = "",
-                modifier = Modifier
-                    .size(100.dp)
+                contentDescription = ""
             )
 
             Spacer(modifier = Modifier.padding(start = 30.dp))
-
             Column {
                 Text(
                     text = "Universitas Muhammadiyah Yogyakarta",
-                    color = Color.White,
+                    color = Color.Red,
                     fontSize = 15.sp,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "Unggul dan Islami",
-                    color = Color.White,
-                    fontSize = 15.sp
+                    text = "Unggul Islami",
+                    color = Color.Red,
+                    fontWeight = FontWeight.Bold
                 )
             }
         }
-
+        Spacer(modifier = Modifier.padding(top = 16.dp))
         Box(
             modifier = Modifier
-                .fillMaxSize()
                 .background(
-                    color = Color.White,
-                    shape = RoundedCornerShape(
+                    color = Color.White, shape = RoundedCornerShape
+                        (
                         topEnd = 15.dp,
                         topStart = 15.dp
                     )
                 )
-
+                .fillMaxSize()
         ) {
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(10.dp)
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
                     text = "Masukkan Data Kamu",
                     fontWeight = FontWeight.Bold,
                     fontSize = 19.sp
+
                 )
                 Text(
-                    text = "Isi Sesuai data yang kamu daftarkan",
+                    text = "Isi sesuai data yang kamu daftarkan",
                     fontWeight = FontWeight.Light
                 )
-
+                Spacer(modifier = Modifier.padding(8.dp))
 
                 OutlinedTextField(
-                    modifier = Modifier
-                        .fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     value = nim,
-                    shape = RoundedCornerShape(16.dp),
                     onValueChange = { nim = it },
-                    label = { Text(text = "Masukkan NIM anda") },
+                    label = { Text(text = "Nomer Induk Mahasiswa") },
                     leadingIcon = {
                         Icon(
-                            imageVector = Icons.Filled.Info, contentDescription = " "
+                            imageVector = Icons.Filled.Info,
+                            contentDescription = ""
                         )
-                    }
+                    },
+                    singleLine = true,
+                    shape = RoundedCornerShape(50.dp)
                 )
+                Spacer(modifier = Modifier.padding(4.dp))
 
                 OutlinedTextField(
-                    modifier = Modifier
-                        .fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     value = nama,
-                    shape = RoundedCornerShape(16.dp),
                     onValueChange = { nama = it },
-                    label = { Text(text = "Masukkan Nama anda") },
+                    label = { Text(text = "Nama Mahasiswa") },
                     leadingIcon = {
                         Icon(
-                            imageVector = Icons.Filled.Person, contentDescription = " "
+                            imageVector = Icons.Filled.Person,
+                            contentDescription = ""
                         )
-                    }
+                    },
+                    singleLine = true,
+                    shape = RoundedCornerShape(50.dp)
                 )
+                Spacer(modifier = Modifier.padding(4.dp))
+
                 OutlinedTextField(
-                    modifier = Modifier
-                        .fillMaxWidth(),
+                    modifier = Modifier.fillMaxWidth(),
                     value = email,
-                    shape = RoundedCornerShape(16.dp),
                     onValueChange = { email = it },
-                    label = { Text(text = "Masukkan Email anda") },
+                    label = { Text(text = "Email Mahasiswa") },
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Filled.Email,
-                            contentDescription = " "
+                            contentDescription = ""
                         )
                     },
-                    keyboardOptions = KeyboardOptions(
-                        keyboardType = KeyboardType.Email,
-                        imeAction = ImeAction.Done
-                    ),
                     singleLine = true,
                     shape = RoundedCornerShape(50.dp)
                 )
                 Spacer(modifier = Modifier.padding(16.dp))
+
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
-                ){
-                    Button(onClick = { onButtonClicked() }) {
+                ) {
+                    Button(onClick = {onBackButtonClicked()}) {
                         Text(text = "Kembali")
                     }
-                    Button(onClick = ) { onBack }
+                    Button(onClick = {onSimpanButtonClicked(listData)}) {
+                        Text(text = "Simpan")
+                    }
                 }
-
             }
         }
     }
