@@ -2,6 +2,8 @@ package com.example.praktikum6.ui.theme.view.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +12,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -63,6 +69,72 @@ fun TampilData(
                     fontSize = 12.sp,
                     color = Color.White
                 )
+            }
+            Box{
+                Icon(
+                    imageVector = Icons.Filled.Notifications,
+                    contentDescription = "",
+                    tint = Color.White
+                )
+            }
+        }
+        Box(
+            modifier = Modifier
+                .background(
+                    color = Color.White,
+                    shape = RoundedCornerShape(
+                        topStart = 20.dp,
+                        topEnd = 20.dp
+                    )
+                )
+                .fillMaxSize()
+        ){
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ){
+                Text(
+                    text = "Data Diri Mahasiswa",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp
+                )
+                Text(
+                    text = "Hasil Rencana Studi",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 15.sp
+                )
+                Spacer(modifier = Modifier.padding(8.dp))
+                HasilData(
+                    Judul  = "Nama",
+                    Isinya = mahasiswa.nama
+                )
+                Spacer(modifier = Modifier.padding(4.dp))
+                HasilData(
+                    Judul  = "NIM",
+                    Isinya = mahasiswa.nim
+                )
+                Spacer(modifier = Modifier.padding(4.dp))
+                HasilData(
+                    Judul  = "Email",
+                    Isinya = mahasiswa.email
+                )
+                Spacer(modifier = Modifier.padding(4.dp))
+                HasilData(
+                    Judul  = "Mata Kuliah",
+                    Isinya = rencanaStudi.namaMK
+                )
+                Spacer(modifier = Modifier.padding(4.dp))
+                HasilData(
+                    Judul  = "Kelas",
+                    Isinya = rencanaStudi.kelas
+                )
+                Spacer(modifier = Modifier.padding(8.dp))
+                Row  (
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.Center
+                ){
             }
         }
 
