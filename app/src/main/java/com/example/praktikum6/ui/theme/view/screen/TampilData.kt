@@ -15,6 +15,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -41,13 +42,13 @@ fun TampilData(
         modifier = Modifier
             .fillMaxSize()
             .background(color = colorResource(id = R.color.primary))
-    ){
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
-        ){
+        ) {
             Image(
                 painter = painterResource(id = R.drawable.umy),
                 contentDescription = "",
@@ -56,7 +57,7 @@ fun TampilData(
                     .size(60.dp)
             )
             Spacer(modifier = Modifier.padding(start = 16.dp))
-            Column(modifier = Modifier.weight(1f)){
+            Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = mahasiswa.nama,
                     fontWeight = FontWeight.Bold,
@@ -70,7 +71,7 @@ fun TampilData(
                     color = Color.White
                 )
             }
-            Box{
+            Box {
                 Icon(
                     imageVector = Icons.Filled.Notifications,
                     contentDescription = "",
@@ -88,13 +89,13 @@ fun TampilData(
                     )
                 )
                 .fillMaxSize()
-        ){
+        ) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
-            ){
+            ) {
                 Text(
                     text = "Data Diri Mahasiswa",
                     fontWeight = FontWeight.Bold,
@@ -107,37 +108,57 @@ fun TampilData(
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
                 HasilData(
-                    Judul  = "Nama",
+                    Judul = "Nama",
                     Isinya = mahasiswa.nama
                 )
                 Spacer(modifier = Modifier.padding(4.dp))
                 HasilData(
-                    Judul  = "NIM",
+                    Judul = "NIM",
                     Isinya = mahasiswa.nim
                 )
                 Spacer(modifier = Modifier.padding(4.dp))
                 HasilData(
-                    Judul  = "Email",
+                    Judul = "Email",
                     Isinya = mahasiswa.email
                 )
                 Spacer(modifier = Modifier.padding(4.dp))
                 HasilData(
-                    Judul  = "Mata Kuliah",
+                    Judul = "Mata Kuliah",
                     Isinya = rencanaStudi.namaMK
                 )
                 Spacer(modifier = Modifier.padding(4.dp))
                 HasilData(
-                    Judul  = "Kelas",
+                    Judul = "Kelas",
                     Isinya = rencanaStudi.kelas
                 )
                 Spacer(modifier = Modifier.padding(8.dp))
-                Row  (
+                Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.Center
-                ){
+                ) {
+                    Button(
+                        onClick = { onBackButtonClicked() }
+                    ) {
+                        Text("Kembali ke Halaman Utama")
+                    }
+                }
             }
         }
-
     }
 }
+
+@Composable
+fun HasilData(
+    Judul: String,
+    Isinya:String
+){
+    Row(modifier = Modifier.fillMaxWidth()
+        .padding(16.dp),
+        horizontalArrangement = Arrangement.SpaceBetween) {
+        Text(Judul, modifier = Modifier.weight(0.8f))
+        Text(":", modifier = Modifier.weight(0.2f))
+        Text(Isinya, modifier = Modifier.weight(2f))
+    }
+}
+
 
