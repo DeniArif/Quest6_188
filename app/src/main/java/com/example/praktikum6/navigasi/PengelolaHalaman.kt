@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import com.example.praktikum6.model.Mahasiswa
 import com.example.praktikum6.ui.theme.view.screen.MahasiswaFormView
 import com.example.praktikum6.ui.theme.view.viewmodel.MahasiswaViewModel
+import com.example.praktikum6.ui.theme.view.viewmodel.RencanaStudyViewModel
 
 enum class Halaman {
     Splash,
@@ -19,7 +20,7 @@ enum class Halaman {
 
 @Composable
 fun MahasiswaApp(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     mahasiswaViewModel: MahasiswaViewModel = viewModel(),
     krsViewModel: RencanaStudyViewModel = viewModel(),
     navController: NavHostController = rememberNavController()
